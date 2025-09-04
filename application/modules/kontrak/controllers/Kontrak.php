@@ -26,8 +26,8 @@ class Kontrak extends CI_Controller {
        
         $data["plugin"][] = "plugin/datatable";
         $data["plugin"][] = "plugin/select2";
-        $data["title"] = "kontrak";
-        $data["title_des"] = " Daftar kontrak";
+        $data["title"] = "Data Induk";
+        $data["title_des"] = " Data Induk ";
         $data["content"] = "v_index";
 
         $data["data"] = $data;
