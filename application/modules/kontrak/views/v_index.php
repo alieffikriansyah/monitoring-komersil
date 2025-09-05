@@ -131,17 +131,15 @@
                                  <thead class="thead-blue">
                                     <tr>
                                        <th class="cemter-t">NO</th>
-                                       <th class="cemter-t">No.Kontrak</th>
-                                       <th class="cemter-t">Nama Kontrak</th>
+                                       <th class="cemter-t">Kode Data Induk</th>
+                                       <th class="cemter-t">Nama Program</th>
+                                       <th class="cemter-t">Category Program</th>
                                        <th class="cemter-t">Kode Cabang</th>
                                        <th class="cemter-t">Cabang</th>
-                                       <th class="cemter-t">Category Program</th>
-                                       <th class="cemter-t">Portofolio</th>
                                        <th class="cemter-t">LOB</th>
-                                       <th class="cemter-t">SUB LOB</th>
-                                       <th class="cemter-t">Company</th>
-                                       <th class="cemter-t">Company Category</th>
+                                       <th class="cemter-t">Customer</th>
                                        <th class="cemter-t">Nilai Kontrak</th>
+                                       <th class="cemter-t">Tanggal Kontrak</th>
                                        <th class="cemter-t">Tanggal Mulai Kontrak</th>
                                        <th class="cemter-t">Tanggal Selesai Kontrak</th>
                                        <th class="cemter-t">Aksi</th>
@@ -167,7 +165,7 @@
 <div class="modal-dialog modal-lg" role="document">
 <div class="modal-content">
 <div class="modal-header">
-   <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+   <h5 class="modal-title" id="exampleModalLabel">Tambah Data Baru</h5>
    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
    <span aria-hidden="true">&times;</span>
    </button>
@@ -175,13 +173,13 @@
 <form onsubmit="return SaveGroup(this)">
    <div class="modal-body">
       <div class="form-group row">
-         <label class="col-sm-2 col-form-label">No Kontrak</label>
+         <label class="col-sm-2 col-form-label">Kode Data Input</label>
          <div class="col-sm-6">
             <input type="text" class="form-control" name="no_kontrak" id="no_kontrak">
          </div>
       </div>
        <div class="form-group row">
-         <label class="col-sm-2 col-form-label">Nama Kontrak</label>
+         <label class="col-sm-2 col-form-label">Nama Program</label>
          <div class="col-sm-6">
             <input type="text" class="form-control" name="nama_kontrak" id="nama_kontrak">
          </div>
@@ -212,18 +210,6 @@
          </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Portofolio</label>
-         <div class="col-sm-6">
-            <select name="id_portofolio" id="id_portofolio" class="form-control" required>
-                  <option value="">Pilih Portofolio</option>
-                  <option value=""></option>
-                                    <?php foreach ($portofolio as $p): ?>
-                                    <option value="<?=$p['id_portofolio']?>"><?=$p['nama_portofolio']?></option>
-                                    <?php endforeach; ?>
-            </select>
-         </div>  
-      </div>
-      <div class="form-group row">
         <label class="col-sm-2 col-form-label">Lob</label>
         <div class="col-sm-6">
             <select name="id_lob" id="id_lob" class="form-control" required>
@@ -236,23 +222,10 @@
          </div>   
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Sub Lob</label>
-        <div class="col-sm-6">
-            <select name="id_sub_lob" id="id_sub_lob" class="form-control" required>
-                  <option value="">Pilih Sub Lob</option>
-                  <option value=""></option>
-                                    <?php foreach ($sub_lob as $sl): ?>
-                                    <option value="<?=$sl['id_sub_lob']?>"><?=$sl['nama_sub_lob']?></option>
-                                    <?php endforeach; ?>
-           
-            </select>
-         </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Company</label>
+        <label class="col-sm-2 col-form-label">Customer</label>
          <div class="col-sm-6">
             <select name="id_company" id="id_company" class="form-control" required>
-                  <option value="">Pilih Company</option>
+                  <option value="">Pilih Costumer</option>
                   <option value=""></option>
                                     <?php foreach ($company as $c): ?>
                                     <option value="<?=$c['id_company']?>"><?=$c['nama_company']?></option>
@@ -261,30 +234,25 @@
          </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Company Category</label>
-         <div class="col-sm-6">
-            <select name="id_company_category" id="id_company_category" class="form-control" required>
-            <option value="">Pilih Company Category</option>
-             <option value=""></option>
-                              <?php foreach ($company_category as $cc): ?>
-                              <option value="<?=$cc['id_company_category']?>"><?=$cc['nama_company_category']?></option>
-                              <?php endforeach; ?>
-            </select>
-         </div>
-      </div>
-      <div class="form-group row">
          <label class="col-sm-2 col-form-label">Nilai Kontrak</label>
          <div class="col-sm-6">
-            <input type="text" class="form-control" name="nilai_kontrak" id="nilai_kontrak">
+            <input type="number" class="form-control" name="nilai_kontrak" id="nilai_kontrak">
          </div>
       </div>
+
+      <div class="form-group row">
+         <label class="col-sm-2 col-form-label">Tanggal Kontrak</label>
+         <div class="col-sm-6">
+            <input type="date" class="form-control" name="tanggal_kontrak" id="tanggal_kontrak">
+         </div>
+      </div>
+
       <div class="form-group row">
          <label class="col-sm-2 col-form-label">Start Kontrak</label>
          <div class="col-sm-6">
             <input type="date" class="form-control" name="start_kontrak" id="start_kontrak" required>
          </div>
       </div>
-
       <div class="form-group row">
          <label class="col-sm-2 col-form-label">End Kontrak</label>
          <div class="col-sm-6">
@@ -333,15 +301,13 @@
                   <td style="text-align: center;">${no}</td>
                   <td style="text-align: center;">${(val['no_kontrak'] == null ? '' : val['no_kontrak'])}</td>
                   <td style="text-align: center;">${(val['nama_kontrak'] == null ? '' : val['nama_kontrak'])}</td>
+                  <td style="text-align: center;">${(val['nama_kategori'] == null ? '' : val['nama_kategori'])}</td>
                   <td style="text-align: center;">${(val['kode_cabang'] == null ? '' : val['kode_cabang'])}</td>
                   <td style="text-align: center;">${(val['name_cabang'] == null ? '' : val['name_cabang'])}</td>
-                  <td style="text-align: center;">${(val['nama_kategori'] == null ? '' : val['nama_kategori'])}</td>
-                  <td style="text-align: center;">${(val['nama_portofolio'] == null ? '' : val['nama_portofolio'])}</td>
                   <td style="text-align: center;">${(val['nama_lob'] == null ? '' : val['nama_lob'])}</td>
-                  <td style="text-align: center;">${(val['nama_sub_lob'] == null ? '' : val['nama_sub_lob'])}</td>
                   <td style="text-align: center;">${(val['nama_company'] == null ? '' : val['nama_company'])}</td>
-                  <td style="text-align: center;">${(val['nama_company_category'] == null ? '' : val['nama_company_category'])}</td>
                   <td style="text-align: center;">${(val['nilai_kontrak'] == null ? '' : val['nilai_kontrak'])}</td>
+                  <td style="text-align: center;">${(val['tanggal_kontrak'] == null ? '' : val['tanggal_kontrak'])}</td>
                   <td style="text-align: center;">${(val['start_kontrak'] == null ? '' : val['start_kontrak'])}</td>
                   <td style="text-align: center;">${(val['end_kontrak'] == null ? '' : val['end_kontrak'])}</td>
                   <td style="text-align: center;">
@@ -369,14 +335,14 @@
     function AddData(){
       // show();
       $('#m-kontrak').modal('show');
-      $('#m-kontrak').find('.modal-title').html('Tambah Kontrak Baru');   
+      $('#m-kontrak').find('.modal-title').html('Tambah Data Baru');   
       $('#m-kontrak').find('form').attr('onsubmit','return SaveData(this)');
     }
    
     function EditData(id){
       // show();
       $('#m-kontrak').modal('show');
-      $('#m-kontrak').find('.modal-title').html('Edit cabang');   
+      $('#m-kontrak').find('.modal-title').html('Edit Data Induk');   
       $('#m-kontrak').find('form').attr('onsubmit','return UpdateData(this,\''+id+'\')');
       $.ajax({
                url: "<?=base_url()?>Cabang/EditData/"+id,

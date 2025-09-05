@@ -27,7 +27,7 @@ class Kontrak extends CI_Controller {
         $data["plugin"][] = "plugin/datatable";
         $data["plugin"][] = "plugin/select2";
         $data["title"] = "Data Induk";
-        $data["title_des"] = " Data Induk ";
+        $data["title_des"] = " Data Induk";
         $data["content"] = "v_index";
 
         $data["data"] = $data;
@@ -157,11 +157,8 @@ public function SaveData()
         'nama_kontrak'        => $this->input->post('nama_kontrak'),
         'id_cabang'           => $this->input->post('id_cabang'),
         'id_kategori'         => $this->input->post('id_kategori'),
-        'id_portofolio'       => $this->input->post('id_portofolio'),
         'id_lob'              => $this->input->post('id_lob'),
-        'id_sub_lob'          => $this->input->post('id_sub_lob'),
         'id_company'          => $this->input->post('id_company'),
-        'id_company_category' => $this->input->post('id_company_category'),
         'nilai_kontrak'       => $this->input->post('nilai_kontrak'),
         'start_kontrak'       => $this->input->post('start_kontrak'),
         'end_kontrak'            => $this->input->post('end_kontrak'),

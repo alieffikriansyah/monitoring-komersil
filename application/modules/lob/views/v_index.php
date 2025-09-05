@@ -131,7 +131,8 @@
                                  <thead class="thead-blue">
                                     <tr>
                                        <th class="cemter-t">NO</th>
-                                       <th class="cemter-t">Nama Lob</th>
+                                       <th class="cemter-t">Lob</th>
+                                       <th class="cemter-t">Sub Lob</th>
                                        <th class="cemter-t">Aksi</th>
                                     </tr>
                                  </thead>
@@ -168,6 +169,18 @@
             <input type="text" class="form-control" name="nama_lob" id="nama_lob">
          </div>
       </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Sub Lob</label>
+         <div class="col-sm-6">
+            <select name="id_sub_lob" id="id_sub_lob" class="form-control" required>
+                  <option value="">Pilih Sub Lob</option>
+                  <option value=""></option>
+                                    <?php foreach ($sub_lob as $c): ?>
+                                    <option value="<?=$c['id_sub_lob']?>"><?=$c['nama_sub_lob']?></option>
+                                    <?php endforeach; ?>
+            </select>
+         </div>
+      </div>
       <div class="modal-footer">
       <button type="submit" class="btn btn-primary">Simpan</button>
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -196,12 +209,13 @@
                   var header_table = "";
                   // var pag= "";
                   var no=1;
-                  jQuery.each(json['Lob'], function( i, val ) {
+                  jQuery.each(json['lob'], function( i, val ) {
                       
                      var row = "";
                      header_table +=`<tr >
                                        <td style="text-align: center;">`+ no +`</td>
                                        <td style="text-align: center;">`+(val['nama_lob'] == null ? '': val['nama_lob'])+`</td>
+                                       <td style="text-align: center;">`+(val['nama_sub_lob'] == null ? '': val['nama_sub_lob'])+`</td>
                                        
                                        <td style="text-align: center;">
                                           <button class="btn waves-effect waves-light btn-primary btn-icon" onclick="EditData(`+val['id_lob']+`)"><i class="feather icon-edit"></i></button>

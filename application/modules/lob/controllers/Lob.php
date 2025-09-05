@@ -31,7 +31,7 @@ class Lob extends CI_Controller {
         $data["content"] = "v_index";
 
         $data["data"] = $data;
-
+        $data['sub_lob'] = $this->Mod->getWhere('sub_lob', "status != 8")->result_array();
         $this->load->view('template_v2', $data);
         $menu = fetch_menu();
         // foreach ($menu as $key => $value) {
@@ -49,8 +49,15 @@ class Lob extends CI_Controller {
 
     // Fungsi menampilkan data dari database ke tabel view
     function LoadData(){
-        $data['Lob']    = $this->Mod->getWhere('lob',array('status !=' =>8 ))->result_array(); 
-       echo json_encode($data);
+    $this->db->select('lob.*, sub_lob.nama_sub_lob');
+    $this->db->from('lob');
+    $this->db->join('sub_lob', 'lob.id_sub_lob = sub_lob.id_sub_lob', 'left');
+    $this->db->where('lob.status !=', 8);
+    $query = $this->db->get();
+    
+    $data['lob'] = $query->result_array();
+    
+    echo json_encode($data);
     }
 
     function ListData(){
@@ -82,11 +89,13 @@ public function Update() {
     // Ambil ID dari formData
     $id = $this->input->post('id_lob');
     $nama_lob = $this->input->post('nama_lob');
+    $id_sub_lob = $this->input->post('id_sub_lob');
     
     if (!empty($id) && !empty($nama_lob)) {
         // Hanya update nama_pulau saja
         $data = [
-            'nama_lob' => $nama_lob
+            'nama_lob' => $nama_lob,
+            'id_sub_lob' => $id_sub_lob
             // Status tidak diikutsertakan agar tidak terupdate
         ];
         
