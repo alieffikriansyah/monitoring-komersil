@@ -131,7 +131,8 @@
                                  <thead class="thead-blue">
                                     <tr>
                                        <th class="cemter-t">NO</th>
-                                       <th class="cemter-t">Nama Sub Lob</th>
+                                       <th class="cemter-t">Lob</th>
+                                       <th class="cemter-t">Sub Lob</th>
                                        <th class="cemter-t">Aksi</th>
                                     </tr>
                                  </thead>
@@ -162,6 +163,18 @@
 </div>
 <form onsubmit="return SaveGroup(this)">
    <div class="modal-body">  
+       <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Lob</label>
+         <div class="col-sm-6">
+            <select name="id_lob" id="id_lob" class="form-control" required>
+                  <option value="">Pilih Lob</option>
+                  <option value=""></option>
+                                    <?php foreach ($lob as $c): ?>
+                                    <option value="<?=$c['id_lob']?>"><?=$c['nama_lob']?></option>
+                                    <?php endforeach; ?>
+            </select>
+         </div>
+      </div>
       <div class="form-group row">
          <label class="col-sm-2 col-form-label">Nama Sub Lob</label>
          <div class="col-sm-6">
@@ -196,11 +209,12 @@
                   var header_table = "";
                   // var pag= "";
                   var no=1;
-                  jQuery.each(json['Sub_Lob'], function( i, val ) {
+                  jQuery.each(json['sub_lob'], function( i, val ) {
                       
                      var row = "";
                      header_table +=`<tr >
                                        <td style="text-align: center;">`+ no +`</td>
+                                       <td style="text-align: center;">`+(val['nama_lob'] == null ? '': val['nama_lob'])+`</td>
                                        <td style="text-align: center;">`+(val['nama_sub_lob'] == null ? '': val['nama_sub_lob'])+`</td>
                                        
                                        <td style="text-align: center;">

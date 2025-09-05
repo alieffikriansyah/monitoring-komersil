@@ -31,7 +31,7 @@ class Sub_Lob extends CI_Controller {
         $data["content"] = "v_index";
 
         $data["data"] = $data;
-
+         $data['lob'] = $this->Mod->getWhere('lob', "status != 8")->result_array();
         $this->load->view('template_v2', $data);
         $menu = fetch_menu();
         // foreach ($menu as $key => $value) {
@@ -49,7 +49,13 @@ class Sub_Lob extends CI_Controller {
 
     // Fungsi menampilkan data dari database ke tabel view
     function LoadData(){
-        $data['Sub_Lob']    = $this->Mod->getWhere('sub_lob',array('status !=' =>8 ))->result_array(); 
+    $this->db->select('sub_lob.*, lob.nama_lob');
+    $this->db->from('sub_lob');
+    $this->db->join('lob', 'lob.id_lob = sub_lob.id_lob', 'left');
+    $this->db->where('sub_lob.status !=', 8);
+    $query = $this->db->get();
+     $data['sub_lob'] = $query->result_array();
+        // $data['Sub_Lob']    = $this->Mod->getWhere('sub_lob',array('status !=' =>8 ))->result_array(); 
        echo json_encode($data);
     }
 
